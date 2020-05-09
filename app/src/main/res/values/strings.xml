@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Project_Bupe</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="refresh">Refresh</string>
+    <string name="airtime_balance">Airtime Balance</string>
+    <string name="dummy_value">K0.00</string>
+    <string name="check_balance">Check Balance</string>
+    <string name="status">Status:...</string>
+    <string name="make_balance">Recharge Airtime</string>
+    <string name="momo_assist">MoMo Assit</string>
+    <string name="selected_network">Selected Network:</string>
+    <string name="none">none</string>
+    <string name="send_pay">Send Payment</string>
+    <string name="receive_pay">Receive Payment</string>
 </resources>
