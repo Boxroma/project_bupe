@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.hover.ApiKey"
+            android:value="5b33a2eb636c09b9599cb62cde3a70e8"/>
     </application>
 
 </manifest>
