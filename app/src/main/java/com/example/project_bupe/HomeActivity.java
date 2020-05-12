@@ -4,11 +4,19 @@ import android.annotation.SuppressLint;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import com.hover.sdk.api.Hover;
+import com.hover.sdk.api.HoverParameters;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -87,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
+        Hover.initialize(this);
 
         mVisible = true;
         //mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -99,8 +108,49 @@ public class HomeActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new HoverParameters.Builder(HomeActivity.this)
+                        .request("4c1c5219")
+                        .buildIntent();
+                startActivityForResult(i, 0);
+            }
+        });
 
+        Button check_momo_balance_btn = (Button) findViewById(R.id.bt_check_bal);
+        check_momo_balance_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new HoverParameters.Builder(HomeActivity.this)
+                        .request("94e9d917")
+                        .buildIntent();
+                startActivityForResult(i, 0);
+            }
+        });
 
+        Button send_mtn_money_btn = (Button) findViewById(R.id.bt_send_pay);
+        send_mtn_money_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new HoverParameters.Builder(HomeActivity.this)
+                        .request("573c8b62")
+                        .buildIntent();
+                startActivityForResult(i, 0);
+            }
+        });
+
+        Button recharge_airtime_btn = (Button) findViewById(R.id.button2);
+        recharge_airtime_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new HoverParameters.Builder(HomeActivity.this)
+                        .request("4c150d28")
+                        .buildIntent();
+                startActivityForResult(i, 0);
+            }
+        });
 
         // Set up the user interaction to manually show or hide the system UI.
         /*mContentView.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +164,17 @@ public class HomeActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+    }
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
+            String[] sessionTextArr = data.getStringArrayExtra("session_messages");
+            String uuid = data.getStringExtra("uuid");
+            Log.d("D", sessionTextArr.toString());
+        } else if (requestCode == 0 && resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(this, "Error: " + data.getStringExtra("error"), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
